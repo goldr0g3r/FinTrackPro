@@ -1,6 +1,6 @@
-# FinTrack
+# FinTrackPro
 
-FinTrack is a comprehensive Personal Finance Management SaaS application designed to help users manage their finances by tracking expenses, setting budgets, and providing financial advice using AI-driven analytics.
+FinTrackPro is a comprehensive Personal Finance Management SaaS application designed to help users manage their finances by tracking expenses, setting budgets, and providing financial advice using AI-driven analytics.
 
 ## Features
 
