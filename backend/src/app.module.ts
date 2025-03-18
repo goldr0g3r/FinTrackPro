@@ -4,9 +4,19 @@ import { AppService } from './app.service';
 import { LoggerModule } from './common/helpers/logger/Logger.module';
 import { UserModule } from './user/user.module';
 import GetWinstonConfig from './common/helpers/logger/WinstonConfig';
+import { ConfigModule } from '@nestjs/config';
+import { registerConfig } from './config';
 
 @Module({
-  imports: [LoggerModule.forRoot(GetWinstonConfig()), UserModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [registerConfig],
+      envFilePath: ['.env', '.env.development'],
+    }),
+    LoggerModule.forRoot(GetWinstonConfig()),
+    UserModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
