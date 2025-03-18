@@ -21,7 +21,7 @@ export function getLoggerToken(context: string): string {
  */
 export function InjectLogger(
   context = '',
-): (target: object, key: string | symbol, index?: number | undefined) => void {
+): (target: object, key: string | symbol, index?: number) => void {
   loggerContexts.add(context);
   return Inject(getLoggerToken(context));
 }
