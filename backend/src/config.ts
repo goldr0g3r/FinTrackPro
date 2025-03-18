@@ -37,7 +37,7 @@ export class Environment implements IEnvironment {
   accessTokenSecret: string;
 
   @IsNotEmpty()
-  @Expose({ name: 'REFRESH_TOKEN_SECRET ' })
+  @Expose({ name: 'REFRESH_TOKEN_SECRET' })
   refreshTokenSecret: string;
 
   @IsNotEmpty()
@@ -66,7 +66,7 @@ export const registerConfig = registerAs(EnvConfig, (): Environment => {
   });
 
   const errors = validateSync(envClass, {
-    skipMissingProperties: true,
+    skipMissingProperties: false,
   });
 
   if (errors.length > 0) {
