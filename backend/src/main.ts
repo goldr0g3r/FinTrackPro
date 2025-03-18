@@ -1,9 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { LoggerService } from './common/helpers/logger/Logger.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  const logger = await app.resolve(LoggerService);
 
   const config = new DocumentBuilder()
     .setTitle('FinTrackPro API')
@@ -33,7 +36,9 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('/api-docs', app, document);
+
+  logger.log(`Server Listening on HTTP Port: ${process.env.PORT ?? 3000}`);
 
   await app.listen(process.env.PORT ?? 3000);
 }
